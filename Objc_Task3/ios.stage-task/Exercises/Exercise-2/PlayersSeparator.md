@@ -33,8 +33,3 @@ Because we can't form any team given the conditions.
 **Output: 4** 
 
 Four teams can be formed.  (5, 6, 7), (6, 7, 8), (5, 6, 8), (5, 7, 8)
-
-
-
-
-
