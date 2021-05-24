@@ -19,20 +19,21 @@
             if ([increaseTmp count] > 1) {
                 [increaseTmp removeLastObject];
             }
-            
             if ([decreaseTmp count] > 1) {
                 [decreaseTmp removeLastObject];
             }
             
             if ([ratingArray[j] intValue] > [[increaseTmp lastObject] intValue]) {
                 [increaseTmp addObject:[ratingArray objectAtIndex:j]];
-            } else if ([[ratingArray objectAtIndex:j] intValue] < [[decreaseTmp lastObject] intValue]) {
+            }
+            else if ([[ratingArray objectAtIndex:j] intValue] < [[decreaseTmp lastObject] intValue]) {
                 [decreaseTmp addObject:[ratingArray objectAtIndex:j]];
             }
             for (int k = j+1; k < [ratingArray count]; k++) {
                 if ([ratingArray[k] intValue] > [[increaseTmp lastObject] intValue]) {
                     [increaseTmp addObject:[ratingArray objectAtIndex:k]];
-                } else if ([[ratingArray objectAtIndex:k] intValue] < [[decreaseTmp lastObject] intValue]) {
+                }
+                else if ([[ratingArray objectAtIndex:k] intValue] < [[decreaseTmp lastObject] intValue]) {
                     [decreaseTmp addObject:[ratingArray objectAtIndex:k]];
                 }
                 
