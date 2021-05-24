@@ -1,16 +1,14 @@
 #import "LevelOrderTraversal.h"
 
-int tmp;
-
 @interface Node : NSObject
  
 @property NSNumber *number;
 @property Node *l_son;
 @property Node *r_son;
  
-- (Node *)initWithValue:(NSNumber *) value;
+- (Node *)initWithValue:(NSNumber *)value;
 - (Node *)getTreeFromPreorder:(NSArray *) preorder;
-- (NSMutableArray *) getLevelTrav;
+- (NSMutableArray *)getLevelTraversal;
  
 @end
 
@@ -47,49 +45,46 @@ int tmp;
     return root;
 }
 
-- (NSMutableArray *)getLevelTrav {
+- (NSMutableArray *)getLevelTraversal {
     
-    NSMutableArray *trav = [[NSMutableArray alloc] initWithObjects:[[NSMutableArray alloc] initWithObjects: self.number, nil], nil];
+    NSMutableArray *traversal = [[NSMutableArray alloc] initWithObjects:[[NSMutableArray alloc] initWithObjects: self.number, nil], nil];
         
     if (self.l_son != nil) {
-        NSArray *lSon = self.l_son.getLevelTrav;
-        for (int i = 0; i < lSon.count; ++i) {
-            if (i < trav.count - 1) {
-                [trav[i + 1] addObjectsFromArray:lSon[i]];
-            }
-            else {
-                [trav addObject: lSon[i]];
+        NSArray *left = self.l_son.getLevelTraversal;
+        for (int i = 0; i < left.count; ++i) {
+            if (i < traversal.count - 1) {
+                [traversal[i + 1] addObjectsFromArray:left[i]];
+            } else {
+                [traversal addObject: left[i]];
             }
         }
     }
     
     if (self.r_son != nil) {
-        NSArray *rSon = self.r_son.getLevelTrav;
-        for (int i = 0; i < rSon.count; ++i) {
-            if (i < trav.count - 1) {
-                [trav[i + 1] addObjectsFromArray:rSon[i]];
-            }
-            else {
-                [trav addObject: rSon[i]];
+        NSArray *right = self.r_son.getLevelTraversal;
+        for (int i = 0; i < right.count; ++i) {
+            if (i < traversal.count - 1) {
+                [traversal[i + 1] addObjectsFromArray:right[i]];
+            } else {
+                [traversal addObject: right[i]];
             }
         }
     }
     
-    
-    return trav;
+    return traversal;
 }
  
 @end
 
 int tmp = 0;
 
-NSArray *LevelOrderTravForTree(NSArray *tree) {
+NSArray *LevelOrderTraversalForTree(NSArray *tree) {
     
     tmp = 0;
     Node *restoredTree = [[Node alloc] getTreeFromPreorder:tree];
     
     if (restoredTree) {
-        return [restoredTree getLevelTrav];
+        return [restoredTree getLevelTraversal];
     } else {
         return @[];
     }
